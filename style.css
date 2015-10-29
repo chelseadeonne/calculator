@@ -1,0 +1,107 @@
+
+* {
+    padding: 0;
+    margin: 0;
+}
+@font-face {
+    font-family: sand;
+    src: url(fonts/SAND____.TTF);
+}
+.calc_container {
+    background-image: url(images/sand.jpg);
+    height: 100vh;
+    width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    border: 1px groove #754719;
+}
+.header {
+    height: 20%;
+    width: 100%;
+    margin-bottom: 2%;
+    background-image: url(images/beach_water.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.input_display {
+    font-weight: bold;
+    font-size: 40px;
+    color: #754719;
+    text-align: center;
+    width: 90%;
+    height: 100%;
+    border-radius: 15%;
+    margin: 0 2%;
+    margin-left: 4%;
+    border: none;
+    background: transparent;
+}
+.input_display:focus {
+    outline: none;
+}
+.num {
+    display: inline-block;
+    position: relative;
+    width: 15%;
+    margin: 4% 3% 3%;
+}
+img {
+    width: 5%;
+    height: 10%;
+    position:absolute;
+}
+.num p {
+    z-index:100;
+    position:absolute;
+    font-weight:bold;
+
+}
+button {
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    border: none;
+    font-family: sand, sans-serif;
+    color: #754719;
+    background-image: url(images/rock.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+button:hover {
+    color: white;
+}
+button:focus {
+    outline: none;
+}
+.hidden {
+    visibility: hidden;
+}
+.nums_ops {
+    margin: 4% auto 0 9%;
+    width: 90%;
+
+}
+@media screen and (min-width: 376px) {
+    .calc_container {
+        height: 60vh;
+        width: 30vw;
+    }
+    .input_display {
+        font-size: 2.5vw;
+    }
+    button {
+        width: 200px;
+        height: 200px;
+        font-size: 3em;
+    }
+    .nums_ops {
+        margin: 0 auto 0 9%
+    }
+    .num {
+        margin: 0 3% 3%;
+    }
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://Learning-Fuze.github.io/calculator/calculator.js"></script>
+    <script>
+        function calc_display(type, value, item){
+            switch(value) {
+                case undefined:
+                    $(".input_display").html("");
+                    break;
+                default:
+                    $(".input_display").html(value);
+                    break;
+            }
+        }
+        var my_calc = new calculator(calc_display);
+        $(document).ready(function(){
+            $('button').on('click', function(){
+                var val = $(this).text();
+                switch(val) {
+                    case 'AC':
+                        my_calc.allClear();
+                        break;
+                    default:
+                        my_calc.addItem($(this).text());
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div class='calc_container'>
+    <div class='header'>
+        <textarea class='input_display' readonly></textarea>
+    </div>
+    <div class='nums_ops'>
+        <button class='num hidden'>*</button>
+        <button class='num hidden'>*</button>
+        <div class='num ac'>
+            <button><img src='images/rock.png'>AC</button>
+        </div>
+        <div class='num c'>
+            <button><img src='images/rock.png'>C</button></div>
+        <div class='num 7'>
+            <button><img src='images/rock.png'>7</button>
+        </div>
+        <div class='num 8'>
+            <button><img src='images/rock.png'>8</button>
+        </div>
+        <div class='num 9'>
+            <button><img src='images/rock.png'>9</button>
+        </div>
+        <div class='num op divide'>
+            <button><img src='images/rock.png'>/</button>
+        </div>
+        <div class='num 4'>
+            <button><img src='images/rock.png'>4</button>
+        </div>
+        <div class='num 4'>
+            <button><img src='images/rock.png'>5</button>
+        </div>
+        <div class='num 5'>
+            <button><img src='images/rock.png'>6</button>
+        </div>
+        <div class='num op multiply'>
+            <button><img src='images/rock.png'>x</button>
+        </div>
+        <div class='num 1'>
+            <button><img src='images/rock.png'>1</button>
+        </div>
+        <div class='num 2'>
+            <button><img src='images/rock.png'>2</button>
+        </div>
+        <div class='num 3'>
+            <button><img src='images/rock.png'>3</button>
+        </div>
+        <div class='num op subtract'>
+            <button><img src='images/rock.png'>-</button>
+        </div>
+        <div class='num 0'>
+            <button><img src='images/rock.png'>0</button>
+        </div>
+        <div class='num decimal'>
+            <button><img src='images/rock.png'>.</button>
+        </div>
+        <div class='num op equal'>
+            <button><img src='images/rock.png'>=</button>
+        </div>
+        <div class='num op add'>
+            <button><img src='images/rock.png'>+</button>
+        </div>
+    </div>
+</body>
+</html>
