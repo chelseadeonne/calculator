@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class='calc_container'>
+    <div class='header'>
+        <textarea class='input_display' readonly></textarea>
+    </div>
+    <div class='nums_ops'>
+        <button class='num hidden'>*</button>
+        <button class='num hidden'>*</button>
+        <div class='num ac'>
+            <button><img src='images/rock.png'>AC</button>
+        </div>
+        <div class='num c'>
+            <button><img src='images/rock.png'>C</button></div>
+        <div class='num 7'>
+            <button><img src='images/rock.png'>7</button>
+        </div>
+        <div class='num 8'>
+            <button><img src='images/rock.png'>8</button>
+        </div>
+        <div class='num 9'>
+            <button><img src='images/rock.png'>9</button>
+        </div>
+        <div class='num op divide'>
+            <button><img src='images/rock.png'>/</button>
+        </div>
+        <div class='num 4'>
+            <button><img src='images/rock.png'>4</button>
+        </div>
+        <div class='num 4'>
+            <button><img src='images/rock.png'>5</button>
+        </div>
+        <div class='num 5'>
+            <button><img src='images/rock.png'>6</button>
+        </div>
+        <div class='num op multiply'>
+            <button><img src='images/rock.png'>x</button>
+        </div>
+        <div class='num 1'>
+            <button><img src='images/rock.png'>1</button>
+        </div>
+        <div class='num 2'>
+            <button><img src='images/rock.png'>2</button>
+        </div>
+        <div class='num 3'>
+            <button><img src='images/rock.png'>3</button>
+        </div>
+        <div class='num op subtract'>
+            <button><img src='images/rock.png'>-</button>
+        </div>
+        <div class='num 0'>
+            <button><img src='images/rock.png'>0</button>
+        </div>
+        <div class='num decimal'>
+            <button><img src='images/rock.png'>.</button>
+        </div>
+        <div class='num op equal'>
+            <button><img src='images/rock.png'>=</button>
+        </div>
+        <div class='num op add'>
+            <button><img src='images/rock.png'>+</button>
+        </div>
+    </div>
+<!--
+    <div class='calc_container container col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-4 col-lg-4 col-md-offset-4' id='mobile'>
+        <div class='header row'>
+            <input type='text' class='input_display col-sm-9 col-sm-offset-1 col-md-9 col-md-offset-1 col-lg-9 col-lg-offset-1' type='read only' readonly></input>
+            <div class='ac_c col-sm-1 col-md-1 col-lg-1'>
+                <button class='ac btn btn-default'>AC</button>
+                <button class='c btn btn-default' role='button'>C</button>
+            </div>
+        </div>
+        <div class='nums_ops'>
+            <div class='row'>
+                <div class='num col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2'>
+                    <button class='btn btn-success' id='7'>7</button>
+                </div>
+                <div class='num col-sm-2 col-md-2 col-md col-lg-2'>
+                    <button class='btn btn-success' id='8'>8</button>
+                </div>
+                <div class='num col-sm-2 col-md-2 col-lg-2'>
+                    <button class='btn btn-success' id='9'>9</button>
+                </div>
+                <div class='op col-sm-2 col=sm-offset-1 col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1'>
+                    <button class='btn btn-success' id='divide'>/</button>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='num col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2'>
+                    <button class='btn btn-success' id='4'>4</button>
+                </div>
+                <div class='num col-sm-2 col-md-2 col-md col-lg-2'>
+                    <button class='btn btn-success' id='5'>5</button>
+                </div>
+                <div class='num col-sm-2 col-md-2 col-lg-2'>
+                    <button class='btn btn-success' id='6'>6</button>
+                </div>
+                <div class='op col-sm-2 col=sm-offset-1 col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1'>
+                    <button class='btn btn-success' id='multiply'>x</button>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='num col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2'>
+                    <button class='btn btn-success' id='1'>1</button>
+                </div>
+                <div class='num col-sm-2 col-md-2 col-md col-lg-2'>
+                    <button class='btn btn-success' id='2'>2</button>
+                </div>
+                <div class='num col-sm-2 col-md-2 col-lg-2'>
+                    <button class='btn btn-success' id='3'>3</button>
+                </div>
+                <div class='op col-sm-2 col=sm-offset-1 col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1'>
+                    <button class='btn btn-success' id='subtract'>-</button>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='num col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2'>
+                    <button class='btn btn-success' id='0'>0</button>
+                </div>
+                <div class='num col-sm-2 col-md-2 col-md col-lg-2'>
+                    <button class='btn btn-success' id='decimal'>.</button>
+                </div>
+                <div class='op col-sm-2 col-md-2 col-lg-2'>
+                    <button class='btn btn-success' id='equal'>=</button>
+                </div>
+                <div class='op col-sm-2 col=sm-offset-1 col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1'>
+                    <button class='btn btn-success' id='add'>+</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</body>
+</html>
