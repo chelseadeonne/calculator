@@ -96,9 +96,21 @@
             $(".input_display").val('')
         }
         function clear_last_input(){
-            math_array[math_array.length-1] = '';
+            if (math_array[0] !== '' && math_array[2] === '' & math_array[1] === '') {
+                num_string = '';
+                num_string_1 = '';
+                math_array[0] = '';
+                console.log("index 0 triggered");
+            }
+            if (math_array[2] !== '') {
+                num_string = '';
+                num_string_2 = '';
+                math_array[2] = '';
+                console.log("index 2 triggered");
+            }
             console.log(math_array);
             $(".input_display").val(math_array[0] + " " + math_array[1] + " " + math_array[2]);
+
         }
         $(document).ready(function(){
             $("button").on('click', function(){
