@@ -87,6 +87,19 @@
         function divide(x,y) {
             $(".input_display").val(x / y);
         }
+        function all_clear(){
+            num_string = '';
+            num_string_1 = '';
+            num_string_2 = '';
+            operator = '';
+            math_array = ['', '', ''];
+            $(".input_display").val('')
+        }
+        function clear_last_input(){
+            math_array[math_array.length-1] = '';
+            console.log(math_array);
+            $(".input_display").val(math_array[0] + " " + math_array[1] + " " + math_array[2]);
+        }
         $(document).ready(function(){
             $("button").on('click', function(){
                 var button_value = $(this).text();
@@ -96,6 +109,12 @@
                     this.value = value;
                 };
                 switch(button_type) {
+                    case "AC":
+                        button_type = "all_clear";
+                        break;
+                    case "C":
+                        button_type = "clear_last_input";
+                        break;
                     case "=":
                         button_type = "equal_sign";
                         operator = "=";
@@ -162,6 +181,12 @@
                                 divide(num_string_1, num_string_2);
                                 break;
                         }
+                        break;
+                    case "all_clear":
+                        all_clear();
+                        break;
+                    case "clear_last_input":
+                        clear_last_input();
                 }
                 console.log(math_array);
             });
