@@ -70,38 +70,100 @@
     </div>
     <script>
         var input_array = [];
-        var input_obj = function(type, value){
-            this.type = type;
-            this.value = value;
+        var math_array = ['', '', ''];
+        var operator;
+        var num_string = '';
+        var num_string_1 = '';
+        var num_string_2 = '';
+        function add(x,y) {
+            $(".input_display").val(x + y);
         }
-
+        function subtract(x,y) {
+            $(".input_display").val(x - y);
+        }
+        function multiply(x,y) {
+            $(".input_display").val(x * y);
+        }
+        function divide(x,y) {
+            $(".input_display").val(x / y);
+        }
         $(document).ready(function(){
             $("button").on('click', function(){
                 var button_value = $(this).text();
                 var button_type = $(this).text();
+                var input_obj = function(type, value){
+                    this.type = type;
+                    this.value = value;
+                };
                 switch(button_type) {
                     case "=":
-                        button_type = "equalSign";
-                        console.log(button_type);
+                        button_type = "equal_sign";
+                        operator = "=";
                         break;
                     case ".":
                         button_type = "decimal";
                         break;
                     case "+":
+                        button_type = "operator";
+                        operator = "+";
+                        break;
                     case "-":
+                        button_type = "operator";
+                        operator = "-";
+                        break;
                     case "/":
+                        button_type = "operator";
+                        operator = "/";
+                        break;
                     case "x":
                         button_type = "operator";
+                        operator = "x";
                         break;
                     default:
-                        button_type = "number"
+                        button_type = "number";
                         break;
                 }
-                console.log("button value: " + button_value + " button type: " + button_type);
-                input_obj(button_type, button_value);
-                console.dir(input_obj);
-                input_array.push(input_obj);
+                var button_clicked= new input_obj(button_type, button_value);
+                input_array.push(button_clicked);
                 console.log(input_array);
+                switch(button_clicked.type) {
+                    case "number":
+                        if (math_array[1] === '') {
+                            num_string += button_clicked.value;
+                            num_string_1 = parseInt(num_string);
+                            $(".input_display").val(num_string_1);
+                            math_array[0] = num_string_1;
+                        }
+                        if (math_array[1] !== '') {
+                            num_string += button_clicked.value;
+                            num_string_2 = parseInt(num_string);
+                            $(".input_display").val(num_string_1 + " " + operator + " " + num_string_2);
+                            math_array[2] = num_string_2;
+                        }
+                        break;
+                    case "operator":
+                        num_string = '';
+                        $(".input_display").val(num_string_1 + " " + operator);
+                        math_array[0] = num_string_1;
+                        math_array[1] = operator;
+                        break;
+                    case "equal_sign":
+                        switch(math_array[1]) {
+                            case "+":
+                                add(num_string_1, num_string_2);
+                                break;
+                            case "-":
+                                subtract(num_string_1, num_string_2);
+                                break;
+                            case "x":
+                                multiply(num_string_1, num_string_2);
+                                break;
+                            case "/":
+                                divide(num_string_1, num_string_2);
+                                break;
+                        }
+                }
+                console.log(math_array);
             });
         });
     </script>
