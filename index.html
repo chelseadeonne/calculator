@@ -70,7 +70,8 @@
     </div>
     <script>
         var input_array = [];
-        var math_array = ['', '', ''];
+        var math_array = ['', '', '', ''];
+        var temp_num = math_array[3];
         var operator;
         var num_string = '';
         var num_string_1 = '';
@@ -79,10 +80,10 @@
         function answer() {
             result = parseInt($(".input_display").val());
             math_array[0] = result;
-            math_array[1] = '';
+            //math_array[1] = '';
             math_array[2] = '';
             num_string_1 = result;
-            num_string_2 = '';
+            //num_string_2 = '';
         }
         function add(x,y) {
             $(".input_display").val(x + y);
@@ -110,7 +111,7 @@
                 answer();
             }
         }
-        function calculate(){
+        function calculate_switch(){
             switch(math_array[1]) {
                 case "+":
                     add(num_string_1, num_string_2);
@@ -126,12 +127,33 @@
                     break;
             }
         }
+        function calculate(){
+            if (math_array[0] !== '' && math_array[1] !== '' && math_array[2] === '' && num_string_2 === '') {
+                switch (math_array[1]) {
+                    case "+":
+                        add(num_string_1, temp_num);
+                        break;
+                    case "-":
+                        subtract(num_string_1, temp_num);
+                        break;
+                    case "x":
+                        multiply(num_string_1, temp_num);
+                        break;
+                    case "/":
+                        divide(num_string_1, temp_num);
+                        break;
+                }
+            }
+                calculate_switch();
+        }
         function all_clear(){
             num_string = '';
             num_string_1 = '';
             num_string_2 = '';
+            temp_num = '';
+            result = '';
             operator = '';
-            math_array = ['', '', ''];
+            math_array = ['', '', '', ''];
             $(".input_display").val('')
         }
         function clear_last_input(){
@@ -148,7 +170,6 @@
                     console.log("index 2 triggered");
                 }
             $(".input_display").val(math_array[0] + " " + math_array[1] + " " + math_array[2]);
-
         }
         function button_clicked(_this) {
             var button_value = $(_this).text();
@@ -157,6 +178,9 @@
                 this.type = type;
                 this.value = value;
             };
+            if (math_array[0] !== '' && math_array[2] === '' && math_array[1] === '') {
+                temp_num = math_array[0];
+            }
             switch (button_type) {
                 case "AC":
                     button_type = "all_clear";
