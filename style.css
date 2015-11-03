@@ -37,6 +37,16 @@
     border: none;
     background: transparent;
 }
+::-webkit-input-placeholder {
+    font-weight: bold;
+    font-size: 40px;
+    color: #754719;
+}
+:-moz-placeholder {
+    font-weight: bold;
+    font-size: 35px;
+    color: #754719;
+}
 .input_display:focus {
     outline: none;
 }
@@ -44,7 +54,8 @@
     display: inline-block;
     position: relative;
     width: 15%;
-    margin: 4% 3% 3%;
+    height: 15%;
+    margin: 0 3% 0;
 }
 img {
     width: 5%;
@@ -58,14 +69,17 @@ img {
 
 }
 button {
-    font-size: 1em;
+    font-size: 90%;
     font-weight: bold;
     border-radius: 100%;
-    width: 60px;
-    height: 60px;
+    #width: 60px;
+    #height: 60px;
+    width: 100%;
+    height: 100%;
     border: none;
     font-family: sand, sans-serif;
     color: #754719;
+    background: transparent;
     background-image: url(images/rock.png);
     background-size: 100%;
     background-repeat: no-repeat;
@@ -83,9 +97,10 @@ button:focus {
 .nums_ops {
     margin: 4% auto 0 9%;
     width: 90%;
+    height: 80%;
 
 }
-@media screen and (min-width: 376px) {
+@media screen and (min-width: 567px) {
     .calc_container {
         height: 60vh;
         width: 30vw;
@@ -94,14 +109,15 @@ button:focus {
         font-size: 2.5vw;
     }
     button {
-        width: 200px;
-        height: 200px;
-        font-size: 3em;
+        width: 116%;
+        height: 100%;
+        #font-size: 70%;
     }
     .nums_ops {
-        margin: 0 auto 0 9%
+        margin: 0 auto 0 9%;
     }
     .num {
         margin: 0 3% 3%;
+        height: 15%;
     }
 }
