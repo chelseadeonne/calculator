@@ -77,8 +77,9 @@
         var num_string_1 = '';
         var num_string_2 = '';
         var result = '';
+        var dec = false;
         function answer() {
-            result = parseInt($(".input_display").val());
+            result = parseFloat($(".input_display").val());
             math_array[0] = result;
             //math_array[1] = '';
             math_array[2] = '';
@@ -87,17 +88,19 @@
         }
         function add(x,y) {
             $(".input_display").val(x + y);
-            result = parseInt($(".input_display").val());
+            result = parseFloat($(".input_display").val());
             answer();
         }
         function subtract(x,y) {
             $(".input_display").val(x - y);
-            result = parseInt($(".input_display").val());
+            result = parseFloat($(".input_display").val());
             answer();
         }
         function multiply(x,y) {
+            console.log("multiply function called");
             $(".input_display").val(x * y);
-            result = parseInt($(".input_display").val());
+            result = parseFloat($(".input_display").val());
+            console.log(result);
             answer();
         }
         function divide(x,y) {
@@ -107,11 +110,18 @@
                 answer;
             }else {
                 $(".input_display").val(x / y);
-                result = parseInt($(".input_display").val());
+                result = parseFloat($(".input_display").val());
                 answer();
             }
         }
         function calculate_switch(){
+            console.log("calculate switch called");
+            if (math_array[0] !== "" && math_array[1] !== "" && math_array[2] === "") {
+                num_string_2 = num_string_1;
+            }
+            if (math_array[0] !== '' && math_array[2] === '' && math_array[1] !== '' && num_string !== "") {
+                num_string_2 = parseFloat(num_string);
+            }
             switch(math_array[1]) {
                 case "+":
                     add(num_string_1, num_string_2);
@@ -127,25 +137,6 @@
                     break;
             }
         }
-        function calculate(){
-            if (math_array[0] !== '' && math_array[1] !== '' && math_array[2] === '' && num_string_2 === '') {
-                switch (math_array[1]) {
-                    case "+":
-                        add(num_string_1, temp_num);
-                        break;
-                    case "-":
-                        subtract(num_string_1, temp_num);
-                        break;
-                    case "x":
-                        multiply(num_string_1, temp_num);
-                        break;
-                    case "/":
-                        divide(num_string_1, temp_num);
-                        break;
-                }
-            }
-                calculate_switch();
-        }
         function all_clear(){
             num_string = '';
             num_string_1 = '';
@@ -157,18 +148,18 @@
             $(".input_display").val('')
         }
         function clear_last_input(){
-                if (math_array[0] !== '' && math_array[2] === '' && math_array[1] === '') {
-                    num_string = '';
-                    num_string_1 = '';
-                    math_array[0] = '';
-                    console.log("index 0 triggered");
-                }
-                if (math_array[2] !== '') {
-                    num_string = '';
-                    num_string_2 = '';
-                    math_array[2] = '';
-                    console.log("index 2 triggered");
-                }
+            if (math_array[0] !== '' && math_array[2] === '' && math_array[1] === '') {
+                num_string = '';
+                num_string_1 = '';
+                math_array[0] = '';
+                console.log("index 0 triggered");
+            }
+            if (math_array[2] !== '') {
+                num_string = '';
+                num_string_2 = '';
+                math_array[2] = '';
+                console.log("index 2 triggered");
+            }
             $(".input_display").val(math_array[0] + " " + math_array[1] + " " + math_array[2]);
         }
         function button_clicked(_this) {
@@ -181,6 +172,7 @@
             if (math_array[0] !== '' && math_array[2] === '' && math_array[1] === '') {
                 temp_num = math_array[0];
             }
+
             switch (button_type) {
                 case "AC":
                     button_type = "all_clear";
@@ -221,13 +213,13 @@
                 case "number":
                     if (math_array[1] === '') {
                         num_string += button_clicked.value;
-                        num_string_1 = parseInt(num_string);
+                        num_string_1 = parseFloat(num_string);
                         $(".input_display").val(num_string_1);
                         math_array[0] = num_string_1;
                     }
                     if (math_array[1] !== '') {
                         num_string += button_clicked.value;
-                        num_string_2 = parseInt(num_string);
+                        num_string_2 = parseFloat(num_string);
                         $(".input_display").val(num_string_1 + " " + operator + " " + num_string_2);
                         math_array[2] = num_string_2;
                     }
@@ -236,31 +228,26 @@
                     num_string = '';
                     $(".input_display").val(num_string_1 + " " + operator);
                     math_array[0] = num_string_1;
-                    math_array[1] = operator;
-                    if (math_array[0] !== "" && math_array[1] !== "" && math_array[2] !== "") {
-                        //num_string_1 = parseInt(math_array[0]) +
-                        switch (math_array[1]) {
-                            case "+":
-                                calculate();
-                                math_array[1] = operator;
-                                break;
-                            case "-":
-                                calculate();
-                                math_array[1] = operator;
-                                break;
-                            case "x":
-                                calculate();
-                                math_array[1] = operator;
-                                break;
-                            case "/":
-                                calculate();
-                                math_array[1] = operator;
-                                break;
-                        }
+                    if (math_array[0] !== "" && math_array[2] === "") {
+                        math_array[1] = operator;
                     }
+                    if (math_array[0] !== "" && math_array[1] !== "" && math_array[2] !== "") {
+                        calculate_switch();
+                        math_array[1] = operator;
+                    }
+                    dec = false;
+                    break;
+                case "decimal":
+                        if (!dec) {
+                            dec = true;
+                            num_string += ".";
+                            $(".input_display").val(num_string);
+                            math_array[0] += ".";
+                        }
                     break;
                 case "equal_sign":
-                    calculate();
+                    dec = false;
+                    calculate_switch();
                     break;
                 case "all_clear":
                     all_clear();
@@ -268,9 +255,9 @@
                 case "clear_last_input":
                     clear_last_input();
                     break;
-                    }
-                    console.log(math_array);
             }
+            console.log(math_array);
+        }
         $(document).ready(function(){
             $("button").on('click', function() {
                 button_clicked(this);
