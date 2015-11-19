@@ -7,10 +7,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
+<!--======== Calculator ==========-->
 <div class='calc_container'>
+<!--======= Calculator Display ===========-->
     <div class='header'>
-        <textarea class='input_display' placeholder='Ready' readonly></textarea>
+        <textarea class='input_display' placeholder='Ready'></textarea>
     </div>
+<!--========= Calculator Buttons ===========-->
     <div class='nums_ops'>
         <button class='num hidden'>*</button>
         <button class='num hidden'>*</button>
@@ -78,14 +81,14 @@
         var num_string_2 = '';
         var result = '';
         var dec = false;
+/*======== Assign Answer =========*/
         function answer() {
             result = parseFloat($(".input_display").val());
             math_array[0] = result;
-            //math_array[1] = '';
             math_array[2] = '';
             num_string_1 = result;
-            //num_string_2 = '';
         }
+/*====== Functions to Add, Subtract, Multiply, and Divide ==========*/
         function add(x,y) {
             $(".input_display").val(x + y);
             result = parseFloat($(".input_display").val());
@@ -114,6 +117,7 @@
                 answer();
             }
         }
+/*===== Function to Calculate Math ===========*/
         function calculate_switch(){
             console.log("calculate switch called");
             if (math_array[0] !== "" && math_array[1] !== "" && math_array[2] === "") {
@@ -137,6 +141,7 @@
                     break;
             }
         }
+/*========= Clearing All Math =======*/
         function all_clear(){
             num_string = '';
             num_string_1 = '';
@@ -147,6 +152,7 @@
             math_array = ['', '', '', ''];
             $(".input_display").val('')
         }
+/*======== Clearing only Last Input ==========*/
         function clear_last_input(){
             if (math_array[0] !== '' && math_array[2] === '' && math_array[1] === '') {
                 num_string = '';
@@ -162,17 +168,20 @@
             }
             $(".input_display").val(math_array[0] + " " + math_array[1] + " " + math_array[2]);
         }
+/*======= Function For Interacting with Clicked Buttons ======*/
         function button_clicked(_this) {
             var button_value = $(_this).text();
             var button_type = $(_this).text();
+/*======= Object Constructor for knowing Type and Value of Each Button =======*/
             var input_obj = function (type, value) {
                 this.type = type;
                 this.value = value;
             };
+/*========= Setting up Temporary Number to Calculate Math Later =======*/
             if (math_array[0] !== '' && math_array[2] === '' && math_array[1] === '') {
                 temp_num = math_array[0];
             }
-
+/*========= Deciphering What Each Button's Type Is & Assigning Necessary Operators ==========*/
             switch (button_type) {
                 case "AC":
                     button_type = "all_clear";
@@ -207,8 +216,11 @@
                     button_type = "number";
                     break;
             }
+/*========= Creating Object for Each Button Clicked =========*/
             var button_clicked = new input_obj(button_type, button_value);
+/*========= Pushing Each Button Type/Value to the Input Array ===========*/
             input_array.push(button_clicked);
+/* Conditionals For Implementing a: Number, Operator, Decimal, Equals, Clear, or All Clear for Math Array & Display */
             switch (button_clicked.type) {
                 case "number":
                     if (math_array[1] === '') {
@@ -258,6 +270,7 @@
             }
             console.log(math_array);
         }
+/*========= On Doc Load ===========*/
         $(document).ready(function(){
             $("button").on('click', function() {
                 button_clicked(this);
